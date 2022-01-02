@@ -1,9 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import TopBar from "./components/layout/topBar";
 
 function App() {
   return (
-    <div>AFIMZA 2.0</div>
+    <div>
+      <TopBar></TopBar>
+    </div>
   );
 }
 
