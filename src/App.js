@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>AFIMZA</div>
+    <div>AFIMZA 2.0</div>
   );
 }
 
