@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,15 +8,19 @@ import Button from "@mui/material/Button";
 class TopBar extends Component {
   render() {
     return (
-      <div>
-        <AppBar position="fixed">
-          <Toolbar sx={{ alignSelf: "center" }}>
-            <Button color="inherit">Gallery</Button>
-            <Button color="inherit">Thoughts</Button>
-            <Button color="inherit">Upcoming</Button>
-          </Toolbar>
-        </AppBar>
-      </div>
+      <AppBar position="static">
+        <Toolbar sx={{ alignSelf: "center" }}>
+          <Button component={Link} to="/gallery" color="inherit">
+            Gallery
+          </Button>
+          <Button component={Link} to="/thoughts" color="inherit">
+            Thoughts
+          </Button>
+          <Button component={Link} to="/upcoming" color="inherit">
+            Upcoming
+          </Button>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
