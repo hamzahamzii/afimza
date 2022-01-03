@@ -6,6 +6,8 @@ import UpcomingPage from "./pages/upcoming";
 import HomePage from "./pages/home";
 import TopBar from "./components/layout/topBar";
 
+import "./styles.css";
+
 function App() {
   return (
     <div>
