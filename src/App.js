@@ -8,7 +8,7 @@ import TopBar from "./components/layout/topBar";
 
 function App() {
   return (
-    <div>
+    <div className="overflow-hidden">
       <Router>
         <TopBar></TopBar>
         <Routes>
