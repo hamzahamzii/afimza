@@ -11,7 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { removeThought } from "../store/actions";
 
 const Thought = (props) => {
-  const { id, title, description } = props.data;
+  const { id, thought, detail } = props.data;
   const dispatch = useDispatch();
   const trimId = (id) => id.toString().slice(-4);
   return (
@@ -29,10 +29,10 @@ const Thought = (props) => {
         </div>
 
         <Typography variant="h4" component="div">
-          {title}
+          {thought}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {description}
+          {detail}
         </Typography>
       </CardContent>
       <CardActions>

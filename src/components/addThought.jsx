@@ -17,20 +17,20 @@ const AddThought = (props) => {
     onClose();
   };
 
-  const [title, setTitle] = React.useState("");
-  const [description, setDescription] = React.useState("");
+  const [thought, setThought] = React.useState("");
+  const [detail, setDetail] = React.useState("");
 
   const clear = () => {
-    setTitle("");
-    setDescription("");
+    setThought("");
+    setDetail("");
   };
 
   const submit = () => {
     dispatch(
       addThought({
         id: Date.now(),
-        title,
-        description,
+        thought,
+        detail,
       })
     );
     clear();
@@ -39,31 +39,36 @@ const AddThought = (props) => {
 
   return (
     <Dialog fullWidth onClose={handleClose} open={open}>
-      <DialogTitle sx={{ pb: 1 }}>Write a thought</DialogTitle>
+      <DialogTitle sx={{ pb: 1 }}>What are you thinking ?</DialogTitle>
       <DialogContent sx={{ pb: 1 }}>
         <TextField
           fullWidth
           size="small"
           id="outlined-basic"
-          label="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          label="Thought"
+          value={thought}
+          onChange={(e) => setThought(e.target.value)}
           variant="outlined"
           sx={{ my: 1 }}
         />
         <TextField
           id="outlined-multiline-flexible"
-          label="Description"
+          label="Detail"
           multiline
           fullWidth
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={detail}
+          onChange={(e) => setDetail(e.target.value)}
           sx={{ my: 1 }}
           minRows={5}
           maxRows={6}
-          onKeyDown={(e) => (e.key === "Enter" ? submit() : () => {})}
+          onKeyDown={(e) =>
+            e.key === "Enter"
+              ? document.getElementById("submit").click()
+              : () => {}
+          }
         />
         <Button
+          id="submit"
           onClick={() => {
             submit();
           }}
