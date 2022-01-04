@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { removeThought } from "../store/actions";
@@ -19,13 +20,9 @@ const Thought = (props) => {
       <CardContent>
         <div className="flex items-center justify-between">
           <span className="text-xs">Thought {trimId(id)}</span>
-          <Button
-            className="p-0"
-            onClick={() => dispatch(removeThought(id))}
-            color="inherit"
-          >
+          <IconButton onClick={() => dispatch(removeThought(id))}>
             <DeleteIcon />
-          </Button>
+          </IconButton>
         </div>
 
         <Typography variant="h4" component="div">

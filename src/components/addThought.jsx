@@ -42,6 +42,7 @@ const AddThought = (props) => {
       <DialogTitle sx={{ pb: 1 }}>What are you thinking ?</DialogTitle>
       <DialogContent sx={{ pb: 1 }}>
         <TextField
+          autoFocus
           fullWidth
           size="small"
           id="outlined-basic"
