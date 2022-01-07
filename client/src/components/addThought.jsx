@@ -9,6 +9,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { addThought } from "../store/actions";
 
+import axios from "axios";
+import { baseUrl } from "../globals";
+
 const AddThought = (props) => {
   const dispatch = useDispatch();
   const { onClose, open } = props;
@@ -18,21 +21,22 @@ const AddThought = (props) => {
   };
 
   const [thought, setThought] = React.useState("");
-  const [detail, setDetail] = React.useState("");
+  const [details, setDetails] = React.useState("");
 
   const clear = () => {
     setThought("");
-    setDetail("");
+    setDetails("");
   };
 
   const submit = () => {
-    dispatch(
-      addThought({
-        id: Date.now(),
+    axios
+      .post(`${baseUrl}/thoughts`, {
         thought,
-        detail,
+        details,
       })
-    );
+      .then((res) => {
+        dispatch(addThought(res.data));
+      });
     clear();
     onClose();
   };
@@ -54,11 +58,11 @@ const AddThought = (props) => {
         />
         <TextField
           id="outlined-multiline-flexible"
-          label="Detail"
+          label="Details"
           multiline
           fullWidth
-          value={detail}
-          onChange={(e) => setDetail(e.target.value)}
+          value={details}
+          onChange={(e) => setDetails(e.target.value)}
           sx={{ my: 1 }}
           minRows={5}
           maxRows={6}

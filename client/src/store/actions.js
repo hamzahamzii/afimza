@@ -1,3 +1,10 @@
+export const setThoughts = (payload) => {
+  return {
+    type: "setThoughts",
+    payload,
+  };
+};
+
 export const addThought = (payload) => {
   return {
     type: "addThought",

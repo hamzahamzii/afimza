@@ -11,16 +11,27 @@ import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { removeThought } from "../store/actions";
 
+import { baseUrl } from "../globals";
+import axios from "axios";
+
 const Thought = (props) => {
-  const { id, thought, detail } = props.data;
+  const { _id, thought, details } = props.data;
   const dispatch = useDispatch();
   const trimId = (id) => id.toString().slice(-4);
+
+  const deleteThought = (id) => {
+    axios.delete(`${baseUrl}/thoughts/${id}`).then((res) => {
+      console.log(res);
+      dispatch(removeThought(id));
+    });
+  };
+
   return (
     <Card className="mx-2" sx={{ maxWidth: 270, minWidth: 200 }}>
       <CardContent>
         <div className="flex items-center justify-between">
-          <span className="text-xs">Thought {trimId(id)}</span>
-          <IconButton onClick={() => dispatch(removeThought(id))}>
+          <span className="text-xs">Thought {trimId(_id)}</span>
+          <IconButton onClick={() => deleteThought(_id)}>
             <DeleteIcon />
           </IconButton>
         </div>
@@ -29,7 +40,7 @@ const Thought = (props) => {
           {thought}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {detail}
+          {details}
         </Typography>
       </CardContent>
       <CardActions>

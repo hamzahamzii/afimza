@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Thought from "../components/thought";
 import AddThought from "../components/addThought";
 
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setThoughts } from "../store/actions";
+
 import Button from "@mui/material/Button";
 
+import axios from "axios";
+import { baseUrl } from "../globals";
+
 const ThoughtsPage = () => {
+  const dispatch = useDispatch();
   const thoughts = useSelector((state) => state.thoughtsReducer);
   const [writingThought, setWritingThought] = useState(false);
+
+  useEffect(() => {
+    if (!thoughts) {
+      axios.get(`${baseUrl}/thoughts`).then((res) => {
+        dispatch(setThoughts(res.data));
+      });
+    }
+  });
 
   return (
     <div className="p-3">
@@ -29,9 +44,10 @@ const ThoughtsPage = () => {
       />
 
       <div className="flex p-3 items-center">
-        {thoughts.map((thought) => (
-          <Thought key={thought.id} data={thought} />
-        ))}
+        {thoughts &&
+          thoughts.map((thought) => (
+            <Thought key={thought._id} data={thought} />
+          ))}
       </div>
     </div>
   );
